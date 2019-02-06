@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/
+*.suo
+*.vssscc
+*.vspscc
+*.dbmdl
+.vscode/
+package-lock.json
