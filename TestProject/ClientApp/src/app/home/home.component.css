@@ -1,0 +1,19 @@
+.tt-home {
+    overflow: auto;
+  }
+  
+  h4 {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  h4 img {
+    height: 3rem;
+    margin-right: 1rem;
+  }
+  
+  section {
+    padding-bottom: 1rem;
+  }
+  
