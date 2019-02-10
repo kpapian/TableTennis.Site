@@ -2,6 +2,19 @@
     font-weight: bold;
 }
 
+.main-logo {
+    width:80px;
+    height:50px;
+}
+
+.cart-logo {
+    width:20px;
+    height:20px;
+    color: wight;
+}
+
+
 .header {
-    height: 70px;    background-color:black;
+    height: 80px;    
+    border-bottom: 2px solid #6c9;
   }
