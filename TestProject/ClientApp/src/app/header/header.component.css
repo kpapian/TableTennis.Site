@@ -7,14 +7,8 @@
     height:50px;
 }
 
-.cart-logo {
-    width:20px;
-    height:20px;
-    color: wight;
-}
-
-
 .header {
     height: 80px;    
     border-bottom: 2px solid #6c9;
+    background: rgba(0, 0, 0, 0.863);
   }

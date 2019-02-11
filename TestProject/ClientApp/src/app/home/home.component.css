@@ -1,7 +1,32 @@
 .main-bg {
-  background-image: url(../../assets/main_photo-min.jpg);
+  background: url(../../assets/main.png);
   height: 100%;
+  width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+}
+
+.card-style{
+  width: 16rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,.5);
+  background: rgba(255,255,255,.2);
+  text-align: center;
+  font-size: 16px; 
+}
+
+.fa-style{
+  color: #6c9;
+}
+
+.card-body h5 {
+  color: white;
+  font-size: 15px;
+  margin: 10px;
+}
+
+.container-info{
+  
 }
