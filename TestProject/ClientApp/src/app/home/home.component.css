@@ -1,7 +1,6 @@
 .main-bg {
   background: url(../../assets/main.png);
-  height: 100%;
-  width: 100%;
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,7 +8,7 @@
 }
 
 .card-style{
-  width: 16rem;
+  width: 22rem;
   border-radius: 3px;
   border: 1px solid rgba(255,255,255,.5);
   background: rgba(255,255,255,.2);
@@ -28,5 +27,13 @@
 }
 
 .container-info{
-  
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.inline {
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 20px;
 }
