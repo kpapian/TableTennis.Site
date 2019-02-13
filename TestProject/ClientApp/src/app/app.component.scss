@@ -1,0 +1,26 @@
+/* Application-wide Styles */
+h1 {
+    color: #369;
+  }
+  h2, h3 {
+    color: #444;
+    font-weight: lighter;
+  }
+  
+  input[text], button {
+    color: #888;
+    font-family: Cambria, Georgia;
+  }
+ 
+.app-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.content-container {
+  position: relative;
+  overflow: auto;
+}

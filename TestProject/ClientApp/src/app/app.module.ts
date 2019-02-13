@@ -1,24 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { CoachesComponent } from './coaches/coaches.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { container } from '@angular/core/src/render3';
+
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'coaches', component: CoachesComponent},
   { path: 'equipment', component: EquipmentComponent},
-  { path: 'contacts', component: ContactsComponent}
+  { path: 'contacts', component: ContactsComponent},
+  { path: '**', redirectTo: '/'}
 ];
 
 @NgModule({
@@ -32,8 +33,8 @@ const appRouts: Routes = [
     ContactsComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    NgbModule,
     FormsModule,
     RouterModule.forRoot(appRouts)
   ],

@@ -1,22 +1,18 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark header">
-    <a class="navbar-brand brand-style" routerLink="/">TT Club
+<div class="d-flex justify-content-start align-items-center navbar-expand-lg navbar-dark header">
+    <div class="d-flex justify-content-center align-items-center navbar-brand brand-style ml-3" routerLink="/">TT Club
         <img src="assets/main-logo.png" class="d-inline-block align-top main-logo" alt="TT Logo">
-    </a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" routerLink="/about">About us</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/coaches">Coaches</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/equipment">Equipment</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/bookSession">Book session</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/contacts">Contacts</a></li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    Cart</a>
-            </li>
-        </ul>
     </div>
-</nav>
+
+    <div class="d-flex flex-grow-1 justify-content-start align-items-center" id="navbarSupportedContent">
+        <div class="d-flex flex-grow-1">
+            <a class="d-flex text-white nav-link" routerLink="/about">About us</a>
+            <a class="d-flex text-white nav-link" routerLink="/coaches">Coaches</a>
+            <a class="d-flex text-white nav-link" routerLink="/equipment">Equipment</a>
+            <a class="d-flex text-white nav-link" routerLink="/bookSession">Book session</a>
+            <a class="d-flex text-white nav-link" routerLink="/contacts">Contacts</a>
+            <a class="d-flex text-white ml-auto mr-3 align-items-center nav-link" href="#">
+                <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
+            Cart</a>
+        </div>
+    </div>
+</div>

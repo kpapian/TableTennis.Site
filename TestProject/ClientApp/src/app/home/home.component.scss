@@ -1,6 +1,5 @@
 .main-bg {
   background: url(../../assets/main.png);
-  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,14 +12,7 @@
   border: 1px solid rgba(255,255,255,.5);
   background: rgba(255,255,255,.2);
   text-align: center;
-  font-size: 16px; 
-}
-
-.container-info h1 {
-  font-size: 56px;
-  font-weight: 700;
-  color: white;
-  text-align: center;
+  font-size: 1rem; 
 }
 
 .fa-style{
