@@ -1,10 +1,15 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark header">
-    <a class="navbar-brand brand-style" routerLink="/">TT Club
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top header">
+    <a class="d-flex navbar-brand justify-content-center 
+            align-items-center font-weight-bold" routerLink="/">TT Club
         <img src="assets/main-logo.png" class="d-inline-block align-top main-logo" alt="TT Logo">
     </a>
+    <button class="navbar-toggler hidden-sm-up" type="button" (click)="isCollapsed = !isCollapsed"
+        data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
             <li class="nav-item"><a class="nav-link" routerLink="/about">About us</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/coaches">Coaches</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/equipment">Equipment</a></li>
