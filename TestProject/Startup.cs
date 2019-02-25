@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TestProject.IServices;
+using TestProject.Services;
 
 namespace TestProject
 {
@@ -27,6 +29,8 @@ namespace TestProject
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddScoped<IAboutService, AboutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,6 +13,7 @@ import { CoachesComponent } from './coaches/coaches.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { container } from '@angular/core/src/render3';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent},
@@ -38,7 +39,8 @@ const appRouts: Routes = [
     NgbModule,
     FormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    RouterModule.forRoot(appRouts)
+    RouterModule.forRoot(appRouts),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
