@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AboutService {
-  private readonly aboutUrl = '/api/about';
+  private readonly aboutUrl = 'api/about';
 
   constructor(private readonly http: HttpClient) {}
 
