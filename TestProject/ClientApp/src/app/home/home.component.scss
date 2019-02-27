@@ -6,6 +6,13 @@
   background-attachment: fixed;
 }
 
+@media screen and (max-width : 550px) {
+  .main-bg {
+    background-image:none ;
+    background: rgba(0, 0, 0, 0.863);
+  }
+}
+
 .card-style{
   width: 22rem;
   border-radius: 3px;
