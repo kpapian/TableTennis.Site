@@ -12,8 +12,8 @@ import { AboutComponent } from './about/about.component';
 import { CoachesComponent } from './coaches/coaches.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { container } from '@angular/core/src/render3';
 import { HttpClientModule } from '@angular/common/http';
+import { SafeHtmlPipe } from './utils/safe-html.pipe';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent},
@@ -32,7 +32,8 @@ const appRouts: Routes = [
     AboutComponent,
     CoachesComponent,
     EquipmentComponent,
-    ContactsComponent
+    ContactsComponent,
+    SafeHtmlPipe
   ],
   imports: [
     AppRoutingModule,

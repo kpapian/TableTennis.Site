@@ -1,1 +1,1 @@
-<div *ngIf="content" [innerHtml]="content"></div>
+<div *ngIf="content" [innerHtml]="content | safeHtml"></div>
