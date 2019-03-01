@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TestProject.Models;
 
 namespace TestProject.IServices
 {
@@ -13,7 +12,7 @@ namespace TestProject.IServices
         /// <summary>
         ///     Gets coaches information.
         /// </summary>
-        /// <returns>Coaches information as a structure.</returns>
-        Task<string> GetCoachesInformation();
+        /// <returns>Coaches information.</returns>
+        Task<IEnumerable<Coach>> GetCoachesInformation();
     }
 }
