@@ -2,12 +2,13 @@
 using System.IO;
 using System.Threading.Tasks;
 using TestProject.IServices;
+using TestProject.Utils;
 
 namespace TestProject.Services
 {
     public class AboutService: IAboutService
     {
-        private readonly string _aboutHtmlContent;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="AboutService" /> class.
@@ -15,13 +16,13 @@ namespace TestProject.Services
         /// <param name="hostingEnvironment">The hosting environment.</param>
         public AboutService(IHostingEnvironment hostingEnvironment)
         {
-            string filePath = Path.Combine(hostingEnvironment.ContentRootPath, "Data", "about.html");
-            _aboutHtmlContent = File.ReadAllText(filePath);
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public Task<string> GetAboutHtmlContent()
         {
-            return Task.FromResult(_aboutHtmlContent);
+            string filePath = Path.Combine(_hostingEnvironment.ContentRootPath, PathConstants.RelativeAboutHtmlPath);
+            return File.ReadAllTextAsync(filePath);
         }
     }
 }

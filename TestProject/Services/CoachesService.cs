@@ -6,26 +6,29 @@ using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using TestProject.IServices;
 using TestProject.Models;
+using TestProject.Utils;
 
 namespace TestProject.Services
 {
     public class CoachesService: ICoachesService
     {
-        private readonly IEnumerable<Coach> _coaches;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IConverterService _converterService;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="CoachesService" /> class.
         /// </summary>
         /// <param name="hostingEnvironment">The hosting environment.</param>
-        public CoachesService(IHostingEnvironment hostingEnvironment)
+        public CoachesService(IHostingEnvironment hostingEnvironment, IConverterService converterService)
         {
-            string json = File.ReadAllText(Path.Combine(hostingEnvironment.ContentRootPath, "Data\\Coaches.json"));
-            _coaches = JsonConvert.DeserializeObject<List<Coach>>(json);
+            _hostingEnvironment = hostingEnvironment;
+            _converterService = converterService;
         }
 
         public Task<IEnumerable<Coach>> GetCoachesInformation()
         {
-            return Task.FromResult(_coaches);
+            string path = Path.Combine(_hostingEnvironment.ContentRootPath, PathConstants.CoachesJsonPath);
+            return _converterService.Deserialize<IEnumerable<Coach>>(path); 
         }
     }
 }
