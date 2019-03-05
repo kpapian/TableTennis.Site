@@ -1,4 +1,4 @@
-<div class="position-absolute h-100 w-100">
+<!-- <div class="position-absolute h-100 w-100">
   <section class="d-flex flex-column h-100 justify-content-around align-items-center">
 
     <div class="d-flex flex-column mt-auto mb-auto">
@@ -73,4 +73,26 @@
       </div>
     </div>
   </section>
-</div>
+</div> -->
+
+<div class="position-absolute h-100 w-100">
+    <section class="d-flex flex-column h-100 justify-content-around align-items-center">
+  
+      <div class="d-flex flex-column mt-auto mb-auto">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+          <div  *ngFor="let coach of coaches" class="d-flex flex-row card-deck flex-wrap justify-content-center">
+            <div class="card card-style mx-4">  
+              <img class="card-img-top img-style rounded mx-auto" src={{coach.imageReference}} alt="Card image">   
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{coach.firstName+" "+coach.lastName}}</h5>
+                <p class="font-weight-bold">{{coach.title}}</p>
+                <ul *ngFor="let item of coach.information" class="card-text achievements-list pt-3 pl-3">
+                  <li>{{item}}</li>
+                </ul>
+              </div>
+            </div>            
+          </div>         
+        </div>
+      </div>
+    </section>
+  </div>

@@ -25,7 +25,7 @@ namespace TestProject.Models
         /// <summary>
         /// Gets or sets the Information of Coach model
         /// </summary>
-        public String Information { get; set; }
+        public String[] Information { get; set; }
 
         /// <summary>
         /// Gets or sets the ImageReference of Coach model
