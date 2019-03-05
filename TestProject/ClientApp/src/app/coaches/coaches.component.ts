@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SpaCoach } from './spa-coach.model';
+import { CoachesService } from './coaches.service';
 
 @Component({
   selector: 'app-coaches',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachesComponent implements OnInit {
 
-  constructor() { }
+  coaches: SpaCoach[] = [];
+
+  constructor(private readonly coachesService: CoachesService) { }
 
   ngOnInit() {
+    this.coachesService.getCoaches().subscribe(
+      (coaches: SpaCoach[]) => {
+        this.coaches = coaches;
+      }
+    );
   }
-
 }

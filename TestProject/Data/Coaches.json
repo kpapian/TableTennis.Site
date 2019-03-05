@@ -3,28 +3,28 @@
     "firstName": "Dmytro",
     "lastName": "Pysar",
     "title": "Master of sports of Ukraine in table tennis",
-    "information": "",
-    "imageReference": ""
+    "information": ["qwe", "qwe"],
+    "imageReference": "q"
   },
   {
     "firstName": "Tetyana",
     "lastName": "Bilenko",
     "title": "Master of sports of Ukraine in table tennis",
-    "information": "",
-    "imageReference": ""
+    "information": ["qwe", "qwe"],
+    "imageReference": "q"
   },
   {
     "firstName": "Margaryta",
     "lastName": "Pesotska",
     "title": "Master of sports of international class",
-    "information": "",
-    "imageReference": ""
+    "information": ["qwe", "qwe"],
+    "imageReference": "q"
   },
   {
     "firstName": "Oleksandr",
     "lastName": "Didukh",
     "title": "Master of sports of international class",
-    "information": "",
-    "imageReference": ""
+    "information": ["qwe", "qwe"],
+    "imageReference": "q"
   }
 ]
