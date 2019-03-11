@@ -10,25 +10,25 @@ using TestProject.Utils;
 
 namespace TestProject.Services
 {
-    public class CoachesService: ICoachesService
+    public class LocalCoachesRepository: ICoachesService
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IConverterService _converterService;
+        //private readonly IConverterService _converterService;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CoachesService" /> class.
+        ///     Initializes a new instance of the <see cref="LocalCoachesRepository" /> class.
         /// </summary>
         /// <param name="hostingEnvironment">The hosting environment.</param>
-        public CoachesService(IHostingEnvironment hostingEnvironment, IConverterService converterService)
+        public LocalCoachesRepository(IHostingEnvironment hostingEnvironment, IConverterService converterService)
         {
             _hostingEnvironment = hostingEnvironment;
-            _converterService = converterService;
+            //_converterService = converterService;
         }
 
         public Task<IEnumerable<Coach>> GetCoachesInformation()
         {
             string path = Path.Combine(_hostingEnvironment.ContentRootPath, PathConstants.CoachesJsonPath);
-            return _converterService.Deserialize<IEnumerable<Coach>>(path); 
+            return path.Deserialize<IEnumerable<Coach>>(path);
         }
     }
 }

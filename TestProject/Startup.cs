@@ -29,8 +29,8 @@ namespace TestProject
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddScoped<IAboutService, AboutService>();
-            services.AddScoped<ICoachesService, CoachesService>();
+            services.AddScoped<IAboutService, LocalAboutRepository>();
+            services.AddScoped<ICoachesService, LocalCoachesRepository>();
             services.AddScoped<IConverterService, JsonConverterService>();
         }
 

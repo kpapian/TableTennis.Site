@@ -7,7 +7,7 @@ namespace TestProject.Utils
     /// </summary>
     public static class PathConstants
     {
-        private const String RelativeDataPath = "Data\\";
+        private const String RelativeDataPath = @"Data\";
 
         /// <summary>
         ///     About html content path.

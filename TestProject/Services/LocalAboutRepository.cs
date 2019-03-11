@@ -6,15 +6,15 @@ using TestProject.Utils;
 
 namespace TestProject.Services
 {
-    public class AboutService: IAboutService
+    public class LocalAboutRepository: IAboutService
     {
         private readonly IHostingEnvironment _hostingEnvironment;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="AboutService" /> class.
+        ///     Initializes a new instance of the <see cref="LocalAboutRepository" /> class.
         /// </summary>
         /// <param name="hostingEnvironment">The hosting environment.</param>
-        public AboutService(IHostingEnvironment hostingEnvironment)
+        public LocalAboutRepository(IHostingEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
