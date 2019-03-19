@@ -31,7 +31,7 @@ namespace TestProject
 
             services.AddScoped<IAboutService, LocalAboutRepository>();
             services.AddScoped<ICoachesService, LocalCoachesRepository>();
-            services.AddScoped<IConverterService, JsonConverterService>();
+            services.AddScoped<IEquipmentService, LocalEquipmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,3 +1,19 @@
-<p>
-  equipment works!
-</p>
+<div class="position-absolute h-100 w-100">
+  <section class="d-flex flex-column h-100 justify-content-around align-items-center">
+
+    <div class="d-flex flex-column mt-auto mb-auto">
+      <div class="d-flex flex-row flex-wrap justify-content-center">
+        <div  *ngFor="let item of equipment" class="d-flex flex-row card-deck flex-wrap justify-content-center">
+          <div class="card card-style mx-4">  
+            <img class="card-img-top img-style rounded mx-auto" src={{item.imageReference}} alt="Card image">   
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">{{item.equipmentName}}</h5>
+              <p class="font-weight-bold">${{item.price}}</p>
+              <button type="button" class="btn btn-primary">Add to cart</button>
+            </div>
+          </div>            
+        </div>         
+      </div>
+    </div>
+  </section>
+</div>

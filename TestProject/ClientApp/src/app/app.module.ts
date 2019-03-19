@@ -14,6 +14,7 @@ import { EquipmentComponent } from './equipment/equipment.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeHtmlPipe } from './utils/safe-html.pipe';
+import { CartComponent } from './cart/cart.component';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const appRouts: Routes = [
   { path: 'coaches', component: CoachesComponent},
   { path: 'equipment', component: EquipmentComponent},
   { path: 'contacts', component: ContactsComponent},
+  { path: 'cart', component: CartComponent},
   { path: '**', redirectTo: '/'}
 ];
 
@@ -33,7 +35,8 @@ const appRouts: Routes = [
     CoachesComponent,
     EquipmentComponent,
     ContactsComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    CartComponent
   ],
   imports: [
     AppRoutingModule,

@@ -18,5 +18,10 @@ namespace TestProject.Utils
         ///     Coaches json path.
         /// </summary>
         public const String CoachesJsonPath = RelativeDataPath + "Coaches.json";
+
+        /// <summary>
+        ///     Equipment json path.
+        /// </summary>
+        public const String EquipmentJsonPath = RelativeDataPath + "Equipment.json";
     }
 }

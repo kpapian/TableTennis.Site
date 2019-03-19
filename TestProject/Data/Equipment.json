@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "equipmentName": "Balls",
+    "price": 30,
+    "imageReference": "../../assets/equipment/balls.jpg"
+  },
+  {
+    "id": 2,
+    "equipmentName": "Blade",
+    "price": 130.5,
+    "imageReference": "../../assets/equipment/blade.jpg"
+  },
+  {
+    "id": 3,
+    "equipmentName": "Table Tennis table",
+    "price": 1350,
+    "imageReference": "../../assets/equipment/table.jpg"
+  },
+  {
+    "id": 4,
+    "equipmentName": "Net and Post",
+    "price": 135.89,
+    "imageReference": "../../assets/equipment/net.jpg"
+  },
+  {
+    "id": 5,
+    "equipmentName": "Rubber",
+    "price": 230,
+    "imageReference": "../../assets/equipment/rubber.jpg"
+  },
+  {
+    "id": 6,
+    "equipmentName": "Suit",
+    "price": 95,
+    "imageReference": "../../assets/equipment/suit.jpg"
+  },
+  {
+    "id": 7,
+    "equipmentName": "Robot",
+    "price": 460,
+    "imageReference": "../../assets/equipment/robot.png"
+  }
+]
