@@ -13,16 +13,14 @@ namespace TestProject.Services
     public class LocalCoachesRepository: ICoachesService
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        //private readonly IConverterService _converterService;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="LocalCoachesRepository" /> class.
         /// </summary>
         /// <param name="hostingEnvironment">The hosting environment.</param>
-        public LocalCoachesRepository(IHostingEnvironment hostingEnvironment, IConverterService converterService)
+        public LocalCoachesRepository(IHostingEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
-            //_converterService = converterService;
         }
 
         public Task<IEnumerable<Coach>> GetCoachesInformation()
