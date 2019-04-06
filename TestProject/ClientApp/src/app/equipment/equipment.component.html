@@ -9,7 +9,7 @@
             <div class="card-body">
               <h5 class="card-title font-weight-bold">{{item.equipmentName}}</h5>
               <p class="font-weight-bold">${{item.price}}</p>
-              <button type="button" class="btn btn-primary">Add to cart</button>
+              <button type="button" class="btn btn-primary" (click)="onAddToCart(item)">Add to cart</button>
             </div>
           </div>            
         </div>         

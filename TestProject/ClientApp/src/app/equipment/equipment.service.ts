@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SpaEquipment } from './spa-equipment.model';
@@ -8,6 +8,7 @@ import { SpaEquipment } from './spa-equipment.model';
 })
 export class EquipmentService {
 
+    itemAdded = new EventEmitter<string>();
     private readonly equipmentUrl = `/api/equipment`;
 
     constructor(private readonly http: HttpClient) { }

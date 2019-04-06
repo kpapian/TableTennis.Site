@@ -1,0 +1,26 @@
+<!-- <div>
+    <label>{{itemName}}</label>
+    <input type="number" (change)="onQuantityChanged($event)"/>
+    <button type="button" *ngIf="!shouldBeHidden">Add to cart</button>
+</div> -->
+
+<!-- <div>
+    <label>Price</label>
+    <input type="number" (change)="onPriceChange($event)" />
+    <label>Quantity</label>
+    <input type="number" (change)="onCountChange($event)" />
+</div> -->
+
+
+    <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+            <label class="my-1 mx-2" for="inlineFormInput">Price</label>
+            <input type="number" class="form-control mx-2" id="inlineFormInput"
+                (input)="onTotalChanged()" [(ngModel)]="price">
+        </div>
+        <div class="col-auto my-1">
+            <label class="my-1 mx-2" for="inlineFormInput">Product Quantity</label>
+            <input type="number" class="form-control mx-2" id="inlineFormInput"
+                (input)="onTotalChanged()" [(ngModel)]="count">
+        </div>
+    </div>

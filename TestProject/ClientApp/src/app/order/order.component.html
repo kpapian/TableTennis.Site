@@ -1,0 +1,15 @@
+<!-- <p>
+  <app-item *ngFor="let number of numbers; let i = index"
+  [index]="i"
+  [shouldBeHidden]="shouldBeHidden"
+  (quantityChanged)="onQuantityChanged($event)">
+  </app-item>
+</p> -->
+
+
+<div>
+  <app-item  
+  (totalChanged)="onTotalChanged($event)">
+  </app-item> 
+  <div class="mx-2">Total:{{total}}</div>      
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EquipmentService } from '../equipment/equipment.service';
 
 
 @Component({
@@ -9,5 +10,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
     public isCollapsed = true;
+    public itemCount = 0;
 
+    constructor(private equipmentService: EquipmentService) {
+        this.equipmentService.itemAdded.subscribe(() => this.itemCount++);
+    }
 }

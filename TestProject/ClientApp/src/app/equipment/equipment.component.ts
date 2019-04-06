@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SpaEquipment } from './spa-equipment.model';
 import { EquipmentService } from './equipment.service';
+import { CartComponent } from '../cart/cart.component';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-equipment',
@@ -11,7 +13,11 @@ export class EquipmentComponent implements OnInit {
 
   equipment: SpaEquipment[] = [];
 
-  constructor(private readonly equipmentService: EquipmentService) { }
+  constructor(private readonly equipmentService: EquipmentService) {
+    console.log('log');
+    this.equipmentService.itemAdded.subscribe(
+      (name: string) => alert('Item ' + name + ' was added to cart.'));
+  }
 
   ngOnInit() {
     this.equipmentService.getEquipment().subscribe(
@@ -19,4 +25,13 @@ export class EquipmentComponent implements OnInit {
         this.equipment = equipment;
       });
   }
+
+  onAddToCart(item: any) {
+    this.equipmentService.itemAdded.emit(item.equipmentName);
+  }
+
+  // foo() {
+  //   this.equipmentService.itemAdded.subscribe(
+  //     (name: string) => alert('Item ' + name + ' was added to cart.'));
+  // }
 }
