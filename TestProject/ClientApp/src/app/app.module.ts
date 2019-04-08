@@ -18,6 +18,7 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { ItemComponent } from './order/item/item.component';
 import { CartItemComponent } from './cart/cart.item/cart.item.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ const appRouts: Routes = [
   { path: 'contacts', component: ContactsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'order', component: OrderComponent},
+  { path: 'checkout', component: CheckoutComponent},
   { path: '**', redirectTo: '/'}
 ];
 
@@ -43,7 +45,8 @@ const appRouts: Routes = [
     CartComponent,
     OrderComponent,
     ItemComponent,
-    CartItemComponent
+    CartItemComponent,
+    CheckoutComponent
   ],
   imports: [
     AppRoutingModule,

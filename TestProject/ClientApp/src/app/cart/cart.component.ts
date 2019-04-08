@@ -1,4 +1,5 @@
 import { OnInit, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-cart',
@@ -36,6 +37,9 @@ export class CartComponent implements OnInit {
 
     cartTotal = 0;
 
+    constructor(private router: Router) {
+    }
+
     ngOnInit() {
     }
 
@@ -54,6 +58,9 @@ export class CartComponent implements OnInit {
 
     onItemDeleted(itemTotal: number): void {
         this.cartTotal = this.cartTotal - itemTotal;
-        
+    }
+
+    onProceedToCheckout() {
+        this.router.navigate(['/checkout']);
     }
 }
