@@ -21,6 +21,7 @@ import { CartItemComponent } from './cart/cart.item/cart.item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CanDeactivateGuardService } from './checkout/can-deactivate.guard.service';
 import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-no.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +32,8 @@ const appRouts: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'order', component: OrderComponent },
   { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService] },
-  { path: '**', redirectTo: '/' }
+  { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!'} },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
@@ -49,7 +51,8 @@ const appRouts: Routes = [
     ItemComponent,
     CartItemComponent,
     CheckoutComponent,
-    MessageBoxYesNoComponent
+    MessageBoxYesNoComponent,
+    ErrorPageComponent
   ],
   imports: [
     AppRoutingModule,
