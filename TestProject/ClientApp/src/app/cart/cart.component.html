@@ -4,15 +4,15 @@
             <h1>Shopping Cart</h1>
             <hr>
             <app-cart-item *ngFor="let item of cartList" [cartItem]="item"
-                (itemTotalChanged)="onItemTotalChange($event)" 
-                (itemDeleted)="onItemDeleted($event)">
+                (itemTotalChanged)="onItemTotalChange($event)" (itemDeleted)="onItemDeleted($event)">
             </app-cart-item>
             <hr>
             <div class="row">
                 <div class="col-sm-8 font-weight-bold">Cart total:</div>
                 <div class="col-sm-4 font-weight-bold">${{cartTotal}}</div>
             </div>
-            <button type="button" class="btn btn-success mt-3" (click)="onProceedToCheckout()">Proceed to Checkout</button>
+            <button type="button" [disabled]="isCheckoutBtnEnable" class="btn btn-success mt-3"
+                (click)="onProceedToCheckout()">Proceed to Checkout</button>
         </div>
     </section>
 </div>

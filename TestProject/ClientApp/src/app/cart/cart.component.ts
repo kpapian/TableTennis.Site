@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
     ];
 
     cartTotal = 0;
+    isCheckoutBtnEnable: boolean;
 
     constructor(private router: Router) {
     }
@@ -62,5 +63,9 @@ export class CartComponent implements OnInit {
 
     onProceedToCheckout() {
         this.router.navigate(['/checkout']);
+    }
+
+    calculateCartItemCount() {
+        this.isCheckoutBtnEnable = this.cartList.length >= 2 ? true : false;
     }
 }

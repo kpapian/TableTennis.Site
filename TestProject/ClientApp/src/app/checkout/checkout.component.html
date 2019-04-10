@@ -104,22 +104,29 @@
           </div>
         </div>
       </div>
+    
+    
+      <hr class="mb-4">
+      <div class="row">
+        <div class="col-sm-8 ">Shipping:</div>
+        <div class="col-sm-4">${{shipping}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 ">Taxes:</div>
+        <div class="col-sm-4">${{taxes}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 font-weight-bold">Total:</div>
+        <div class="col-sm-4 font-weight-bold">${{total}}</div>
+      </div>
+      <button type="submit" class="btn btn-success mt-3 mb-3" (click)="onPlaceOrder()">Place Order</button>
+    
+    
+    
+    
     </div>
 
 
-    <hr class="mb-4">
-    <div class="row">
-      <div class="col-sm-8 ">Shipping:</div>
-      <div class="col-sm-4">${{shipping}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 ">Taxes:</div>
-      <div class="col-sm-4">${{taxes}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 font-weight-bold">Total:</div>
-      <div class="col-sm-4 font-weight-bold">${{total}}</div>
-    </div>
-    <button type="submit" class="btn btn-success mt-3 mb-3" (click)="onProceedToCheckout()">Place Order</button>
+    
   </div>
 </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpaEquipment } from './spa-equipment.model';
 import { EquipmentService } from './equipment.service';
-import { CartComponent } from '../cart/cart.component';
-import { $ } from 'protractor';
 
 @Component({
   selector: 'app-equipment',

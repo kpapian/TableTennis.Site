@@ -19,17 +19,19 @@ import { OrderComponent } from './order/order.component';
 import { ItemComponent } from './order/item/item.component';
 import { CartItemComponent } from './cart/cart.item/cart.item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CanDeactivateGuardService } from './checkout/can-deactivate.guard.service';
+import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-no.component';
 
 const appRouts: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'coaches', component: CoachesComponent},
-  { path: 'equipment', component: EquipmentComponent},
-  { path: 'contacts', component: ContactsComponent},
-  { path: 'cart', component: CartComponent},
-  { path: 'order', component: OrderComponent},
-  { path: 'checkout', component: CheckoutComponent},
-  { path: '**', redirectTo: '/'}
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'coaches', component: CoachesComponent },
+  { path: 'equipment', component: EquipmentComponent },
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'order', component: OrderComponent },
+  { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService] },
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const appRouts: Routes = [
     OrderComponent,
     ItemComponent,
     CartItemComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    MessageBoxYesNoComponent
   ],
   imports: [
     AppRoutingModule,
@@ -56,7 +59,10 @@ const appRouts: Routes = [
     RouterModule.forRoot(appRouts),
     HttpClientModule,
   ],
-  providers: [],
+  entryComponents: [MessageBoxYesNoComponent], /// why do we need to add this here?
+  /// in case of dynamically loaded component and in order for a ComponentFactory to be generated,
+  // the component must also be added to the module’s entryComponent
+  providers: [CanDeactivateGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
