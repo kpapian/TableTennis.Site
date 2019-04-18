@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -61,6 +61,7 @@ const appRouts: Routes = [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     RouterModule.forRoot(appRouts),
     HttpClientModule,
+    ReactiveFormsModule
   ],
   entryComponents: [MessageBoxYesNoComponent], /// why do we need to add this here?
   /// in case of dynamically loaded component and in order for a ComponentFactory to be generated,

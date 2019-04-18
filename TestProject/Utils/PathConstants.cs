@@ -23,5 +23,10 @@ namespace TestProject.Utils
         ///     Equipment json path.
         /// </summary>
         public const String EquipmentJsonPath = RelativeDataPath + "Equipment.json";
+
+        /// <summary>
+        ///     Orders json pathes.
+        /// </summary>
+        public const String OrderJsonPathes = RelativeDataPath + @"Orders\";
     }
 }

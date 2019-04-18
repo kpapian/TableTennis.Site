@@ -14,21 +14,33 @@
     "firstName": "Dmytro",
     "lastName": "Pysar",
     "title": "Master of sports of Ukraine in table tennis",
-    "information": ["qwe", "qwe"],
+    "information": [
+      "currently number 120 in the ITTF World Ranking;",
+      "lays for the national team of Ukraine;",
+      "has it's own table tennis shool;"
+    ],
     "imageReference": "../../assets/coach/pysar.jpg"
   },  
   {
     "firstName": "Margaryta",
     "lastName": "Pesotska",
     "title": "Master of sports of international class",
-    "information": ["qwe", "qwe"],
+    "information": [
+      "currently number 64 in the ITTF World Ranking;",
+      "lays for the national team of Ukraine;",
+      "participant in 2012 Summer Olympics, 2016 Summer Olympics;"
+    ],
     "imageReference": "../../assets/coach/pesockaya.jpg"
   },
   {
     "firstName": "Oleksandr",
     "lastName": "Didukh",
     "title": "Master of sports of international class",
-    "information": ["qwe", "qwe"],
+    "information": [
+      "currently number 128 in the ITTF World Ranking;",
+      "lays for the national team of Ukraine;",
+      "participant in 2012 Summer Olympics, 2016 Summer Olympics;"
+    ],
     "imageReference": "../../assets/coach/diduh.jpg"
   }
 ]
