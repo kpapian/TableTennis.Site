@@ -19,9 +19,9 @@ namespace TestProject.Services
         /// <returns>Returns task</returns>
         public async Task<string> CreateOrder(Order orderData)
         {
-            string id = Guid.NewGuid().ToString();
+            string orderNumber = Guid.NewGuid().ToString();
             string order = JsonConvert.SerializeObject(orderData);
-            string orderPath = Path.Combine(PathConstants.OrderJsonPathes, $"order_{id}.json");
+            string orderPath = Path.Combine(PathConstants.OrderJsonPathes, $"order_{orderNumber}.json");
 
             byte[] orderBytes = System.Text.Encoding.UTF8.GetBytes(order);
 
@@ -30,7 +30,7 @@ namespace TestProject.Services
                 await fs.WriteAsync(orderBytes);
             }
 
-            return id;
+            return orderNumber;
         }
     }
 }

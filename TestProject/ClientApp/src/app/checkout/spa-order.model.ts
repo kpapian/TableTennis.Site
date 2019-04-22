@@ -1,4 +1,4 @@
-export class Order {
+export class SpaOrder {
 
     firstName: string;
     lastName: string;

@@ -1,6 +1,6 @@
 <div class="position-absolute h-100 w-100">
 
-  <div class="container mb-auto mt-5">
+  <div class="container mb-auto mt-5" *ngIf="!isOrderPlaced">
     <h1>Checkout</h1>
     <hr>
     <div class="d-flex flex-column col-md-8 order-md-1">
@@ -12,25 +12,25 @@
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
             <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="" value="">
-            <div class="invalid-feedback">
-              First name is required.
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('firstName').valid && checkoutForm.get('firstName').touched">
+              Required
+            </small>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Last name</label>
             <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="" value="">
-            <div class="invalid-feedback">
-              Last name is required.
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('lastName').valid && checkoutForm.get('lastName').touched">
+              Required
+            </small>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="address">Address</label>
           <input type="text" class="form-control" id="address" formControlName="address" placeholder="1234 Main St">
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
+          <small class="required-message" *ngIf="!checkoutForm.get('address').valid && checkoutForm.get('address').touched">
+            Required
+          </small>
         </div>
 
         <div class="row">
@@ -40,17 +40,17 @@
             <select class="custom-select d-block w-100" id="country" formControlName="country">
               <option *ngFor="let country of countries" [value]="country">{{country}}</option>
             </select>
-            <div class="invalid-feedback">
-              Please select a country.
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('country').valid && checkoutForm.get('country').touched">
+              Required
+            </small>
           </div>         
 
           <div class="col-md-3 mb-3">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" id="zip" formControlName="zip" placeholder="">
-            <div class="invalid-feedback">
-              Zip code required.
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('zip').valid && checkoutForm.get('zip').touched">
+              Required
+            </small>
           </div>
 
         </div>
@@ -64,25 +64,12 @@
               class="custom-control-input" [value]="payment">
             <label class="custom-control-label" [for]="'paymentType_' + i">{{payment}}</label>
           </div>
-
            <!-- <div *ngFor="let payment of payments; let i = index">
              <label>
                 <input type="radio" formControlName="paymentType" [value]="payment">
                 {{payment}}
              </label>
           </div> -->
-<!-- 
-          <div class="custom-control custom-radio">
-              <input id="credit" name="paymentMethod" type="radio" 
-              class="custom-control-input" checked required>
-              <label class="custom-control-label" for="credit">Credit card</label>
-            </div>
-    
-            <div class="custom-control custom-radio">
-              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-              <label class="custom-control-label" for="debit">Debit card</label>
-            </div> -->
-
         </div>
 
         <div class="row">
@@ -90,25 +77,28 @@
             <label for="cardNumber">Credit card number</label>
             <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" placeholder="">
             <small class="text-muted">Card number as displayed on card</small>
-            <div class="invalid-feedback">
-              Credit card number is required
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('cardNumber').valid && checkoutForm.get('cardNumber').touched">
+              Required
+            </small>
           </div>
         </div>
         <div class="row">
+
           <div class="col-md-3 mb-3">
             <label for="expirationDate">Expiration</label>
-            <input type="text" class="form-control" id="expirationDate" formControlName="expirationDate" placeholder="">
-            <div class="invalid-feedback">
-              Expiration date required
-            </div>
+            <input type="text" class="form-control" id="expirationDate" formControlName="expirationDate" placeholder="mm/yy">
+            <small class="required-message" *ngIf="!checkoutForm.get('expirationDate').valid && checkoutForm.get('expirationDate').touched">
+              Required
+            </small>
           </div>
+
+
           <div class="col-md-3 mb-3">
             <label for="cvv">CVV</label>
             <input type="text" class="form-control" id="cvv" formControlName="cvv" placeholder="">
-            <div class="invalid-feedback">
-              Security code required
-            </div>
+            <small class="required-message" *ngIf="!checkoutForm.get('cvv').valid && checkoutForm.get('cvv').touched">
+              Required
+            </small>
           </div>
         </div>
 
@@ -126,10 +116,13 @@
           <div class="col-sm-8 font-weight-bold">Total:</div>
           <div class="col-sm-4 font-weight-bold">${{total}}</div>
         </div>
-        <button type="submit" class="btn btn-success mt-3 mb-3" >Place Order</button>
+        <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="!checkoutForm.valid">Place Order</button>
       </form>
 <div>{{form | json}}</div>
 
     </div>
+  </div>
+  <div>
+  <app-order-success *ngIf="isOrderPlaced"></app-order-success>
   </div>
 </div>

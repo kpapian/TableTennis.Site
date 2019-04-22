@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using TestProject.IServices;
@@ -26,8 +27,9 @@ namespace TestProject.Controllers
             _checkout = checkout;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateOrderAsync([FromBody] Order orderData)
+        [HttpPost("order")]
+        public async Task<IActionResult> CreateOrderAsync(
+            [Required] [FromBody] Order orderData)
         {
             if (orderData == null)
             {

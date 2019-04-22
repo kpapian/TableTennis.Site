@@ -1,53 +1,90 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CanComponentDeactivate } from './can-deactivate.guard.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { CustomValidators } from '../utils/custom-validators';
+import { CheckoutService } from './checkout.service';
+import { SpaOrder } from './spa-order.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, CanComponentDeactivate {
+export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
   payments = ['Credit card', 'Debit card'];
   countries = ['USA', 'Canada', 'Ukraine', 'France', 'German'];
-
   shipping = 100;
   taxes = 10;
-  orderPlaced = false;
-  checkoutForm: FormGroup;
 
-  constructor(private route: Router) { }
+  hasUnsavedChanges = false;
+  isOrderPlaced = false;
+  filledOrder: SpaOrder;
+  checkoutForm: FormGroup;
+  changeCheckoutForm: FormGroup;
+  changeCheckoutFormValuesChangesSubscription!: Subscription;
+  orderData: SpaOrder;
+  orderNumber = 'UNKNWON';
+
+  constructor(private readonly route: Router, private readonly formBuilder: FormBuilder,
+    private readonly checkoutService: CheckoutService) { }
 
   ngOnInit() {
-    this.checkoutForm = new FormGroup({
-      'firstName': new FormControl(null, Validators.required),
-      'lastName': new FormControl(null, Validators.required),
-      'address': new FormControl(null, Validators.required),
-      'country': new FormControl(null, Validators.required),
-      'zip': new FormControl(null, Validators.required),
-      'paymentType': new FormControl(null, Validators.required),
-      'cardNumber': new FormControl(null, Validators.required),
-      'expirationDate': new FormControl(null, Validators.required),
-      'cvv': new FormControl(null, Validators.required),
-    });
+    this.buildForm();
+
+    this.changeCheckoutFormValuesChangesSubscription = this.checkoutForm.valueChanges
+      .subscribe(() => this.hasUnsavedChanges = true);
   }
 
   canDeactivate(): boolean {
-    return this.orderPlaced;
+    return this.hasUnsavedChanges;
   }
 
+  // TODO Delete this debug method
   get form(): any {
     return this.checkoutForm.value;
   }
 
+  private buildForm() {
+    this.checkoutForm = this.formBuilder.group({
+      firstName: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      lastName: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      address: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      country: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      zip: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      paymentType: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      cardNumber: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      expirationDate: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+      cvv: new FormControl(null, [Validators.required, CustomValidators.whitespacesValidation]),
+    });
+
+  }
+
   onPlaceOrder() {
-    // add logic to save order
-    this.orderPlaced = true;
+    this.hasUnsavedChanges = true;
     // add logic to navigate after success place order to the page with order number
     // this.route.navigate(['/order-info']);
 
-    console.log(this.checkoutForm);
+    this.filledOrder = this.checkoutForm.value;
+    this.checkoutService.createOrder(this.filledOrder)
+      .subscribe(
+        (customerOrderNumber: string) => {
+          this.hasUnsavedChanges = false;
+          this.orderNumber = customerOrderNumber;
+          // navigate to success component
+          // this.route.navigate([`/checkout/order/${this.orderNumber}`]);
+          this.isOrderPlaced = true;        },
+        () => {
+          alert('Some error occurred during your order processing.');
+        });
+
+    this.checkoutForm.reset();
+    
+  }
+
+  ngOnDestroy() {
+    this.changeCheckoutFormValuesChangesSubscription.unsubscribe();
   }
 }

@@ -22,6 +22,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CanDeactivateGuardService } from './checkout/can-deactivate.guard.service';
 import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-no.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
@@ -30,8 +31,9 @@ const appRouts: Routes = [
   { path: 'equipment', component: EquipmentComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'order', component: OrderComponent },
-  { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService] },
+  { path: 'order', component: OrderSuccessComponent },
+  { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService], },
+  { path: 'checkout/order/:orderNumber', component: OrderSuccessComponent },
   { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
 ];
@@ -52,7 +54,8 @@ const appRouts: Routes = [
     CartItemComponent,
     CheckoutComponent,
     MessageBoxYesNoComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    OrderSuccessComponent
   ],
   imports: [
     AppRoutingModule,
