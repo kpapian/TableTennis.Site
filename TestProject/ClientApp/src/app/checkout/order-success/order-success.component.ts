@@ -9,12 +9,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  @Input() orderNumber: string;
+  orderNumber: string;
 
   constructor(private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.orderNumber = this.route.snapshot.params['orderNumber'];
+    this.orderNumber = this.route.snapshot.params['orderNumber'];
 
     // this.route.params
     // .subscribe(
@@ -24,5 +24,4 @@ export class OrderSuccessComponent implements OnInit {
     //   }
     // );
   }
-
 }

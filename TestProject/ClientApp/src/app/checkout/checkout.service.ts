@@ -16,7 +16,7 @@ export class CheckoutService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<string>(this.orderUrl(), JSON.stringify(orderData),
-            { headers });
+        return this.http.post(this.orderUrl(), JSON.stringify(orderData),
+            { headers, responseType: 'text' });
     }
 }

@@ -29,7 +29,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   orderNumber = 'UNKNWON';
 
   constructor(private readonly route: Router, private readonly formBuilder: FormBuilder,
-    private readonly checkoutService: CheckoutService) { }
+              private readonly checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -63,25 +63,18 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   }
 
   onPlaceOrder() {
-    this.hasUnsavedChanges = true;
-    // add logic to navigate after success place order to the page with order number
-    // this.route.navigate(['/order-info']);
-
     this.filledOrder = this.checkoutForm.value;
     this.checkoutService.createOrder(this.filledOrder)
       .subscribe(
         (customerOrderNumber: string) => {
           this.hasUnsavedChanges = false;
           this.orderNumber = customerOrderNumber;
-          // navigate to success component
-          // this.route.navigate([`/checkout/order/${this.orderNumber}`]);
-          this.isOrderPlaced = true;        },
-        () => {
-          alert('Some error occurred during your order processing.');
+          this.route.navigate(['/checkout/order', this.orderNumber]);
+        },
+        err => {
+          alert(err.status);
+          this.checkoutForm.reset();
         });
-
-    this.checkoutForm.reset();
-    
   }
 
   ngOnDestroy() {
