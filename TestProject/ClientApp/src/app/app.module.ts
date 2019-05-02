@@ -23,6 +23,8 @@ import { CanDeactivateGuardService } from './checkout/can-deactivate.guard.servi
 import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-no.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './cart/store/cart-reducer';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +33,7 @@ const appRouts: Routes = [
   { path: 'equipment', component: EquipmentComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'order', component: OrderSuccessComponent },
+  { path: 'order', component: OrderComponent },
   { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService], },
   { path: 'checkout/order/:orderNumber', component: OrderSuccessComponent },
   { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!'} },
@@ -64,7 +66,8 @@ const appRouts: Routes = [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     RouterModule.forRoot(appRouts),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({cartItems: cartReducer})
   ],
   entryComponents: [MessageBoxYesNoComponent], /// why do we need to add this here?
   /// in case of dynamically loaded component and in order for a ComponentFactory to be generated,

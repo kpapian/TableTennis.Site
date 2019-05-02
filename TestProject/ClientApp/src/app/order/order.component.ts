@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { interval, timer, fromEvent, Observable, Observer, Subscription, of, concat, merge } from 'rxjs';
+import { interval, timer, fromEvent, Observable, Observer, Subscription, of, concat, merge, Subject } from 'rxjs';
 import { catchError, switchMap, filter, map } from 'rxjs/operators';
 
 @Component({
@@ -20,32 +20,16 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // const interval$ = interval(1000);
-    // interval$.subscribe(el => console.log('Stream 1' + el));
 
-    // const interval1$ = timer(3000, 1000);
-    // const sub = interval1$.subscribe(el => console.log('Stream 1' + el));
-    // setTimeout(()=> sub.unsubscribe(), 5000);
-    // const click$ = fromEvent(document, 'click');
-    // click$.subscribe(event => console.log(event));
+    const subject = new Subject();
+    const obs$ = subject.asObservable();
 
-    // const sourse1$ = of(1, 2, 3);
-    // const sourse2$ = of(4, 5, 6);
-    // const sourse3$ = of(7, 8, 9);
+    obs$.subscribe(console.log);
 
-    // const result$ = concat(sourse1$, sourse2$, sourse3$);
-
-    // result$.subscribe(console.log);
-
-    const interval1$ = interval(1000);
-    const interval2$ = interval1$.pipe(
-      map((val => val * 10))
-    );
-    const resssult$ = merge(interval1$, interval2$);
-
-    resssult$.subscribe(console.log);
-
-
+    subject.next(1);
+    subject.next(2);
+    subject.next(3);
+    subject.complete();
 
 
     const http$ = this.createHttpObservables('/api/coaches');

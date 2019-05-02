@@ -3,7 +3,7 @@
         <div class="container mb-auto mt-5">
             <h1>Shopping Cart</h1>
             <hr>
-            <app-cart-item *ngFor="let item of cartList" [cartItem]="item"
+            <app-cart-item *ngFor="let item of (cartItemsState | async)" [cartItem]="item"
                 (itemTotalChanged)="onItemTotalChange($event)" (itemDeleted)="onItemDeleted($event)">
             </app-cart-item>
             <hr>
@@ -13,6 +13,12 @@
             </div>
             <button type="button" [disabled]="isCheckoutBtnEnable" class="btn btn-success mt-3"
                 (click)="onProceedToCheckout()">Proceed to Checkout</button>
+        </div>
+
+        <div class="container mb-auto mt-5" *ngIf="cartCount === 0">
+            <h1>Shopping Cart</h1>
+            <hr>
+            <h4>Your cart is empty</h4>
         </div>
     </section>
 </div>
