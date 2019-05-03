@@ -14,7 +14,7 @@ export class AddItemAction implements Action {
 
 export class DeleteItemAction implements Action {
     readonly type = CartActionTypes.DeleteItemActionType;
-    payload: SpaEquipment;
+    constructor(public payload: number) {}
 }
 
 export type CartActions = AddItemAction | DeleteItemAction;

@@ -1,5 +1,6 @@
 import { SpaEquipment } from '../../equipment/spa-equipment.model';
 import { CartActionTypes, CartActions } from './cart.actions';
+import { stat } from 'fs';
 
 export interface CartState {
     items: SpaEquipment[];
@@ -16,11 +17,13 @@ export function cartReducer(state = initialCartState, action: CartActions): Cart
                 ...state,
                 items: [...state.items, action.payload]
             };
-        // case CartActionTypes.DeleteItemActionType:
-        //     return {
-        //         ...state,
-        //         items: [...state.items, action]
-        //     };
+        case CartActionTypes.DeleteItemActionType:
+            const cartItems = [...state.items];
+            cartItems.slice(action.payload, 1);
+            return {
+                ...state,
+                items: cartItems
+            };
         default:
             return state;
     }

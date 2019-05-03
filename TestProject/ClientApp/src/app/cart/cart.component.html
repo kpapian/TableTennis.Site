@@ -1,10 +1,11 @@
 <div class="position-absolute h-100 w-100">
     <section class="d-flex flex-column h-100 justify-content-around align-items-center">
-        <div class="container mb-auto mt-5">
+        <div class="container mb-auto mt-5" *ngIf="!(cartItemsCount === 0)">
             <h1>Shopping Cart</h1>
             <hr>
-            <app-cart-item *ngFor="let item of (cartItemsState | async)" [cartItem]="item"
-                (itemTotalChanged)="onItemTotalChange($event)" (itemDeleted)="onItemDeleted($event)">
+            <app-cart-item *ngFor="let item of (cartItemsState | async).items let i = index"
+            [cartItem]="item"
+            (itemTotalChanged)="onItemTotalChange($event)" (itemDeleted)="onItemDeleted($event)">
             </app-cart-item>
             <hr>
             <div class="row">
@@ -15,7 +16,7 @@
                 (click)="onProceedToCheckout()">Proceed to Checkout</button>
         </div>
 
-        <div class="container mb-auto mt-5" *ngIf="cartCount === 0">
+        <div class="container mb-auto mt-5" *ngIf="cartItemsCount === 0">
             <h1>Shopping Cart</h1>
             <hr>
             <h4>Your cart is empty</h4>
