@@ -1,4 +1,4 @@
-<div class="d-flex flex-row justify-content-start" *ngIf="!isDeleted">
+<div class="d-flex flex-row justify-content-start">
     <div class="col-sm-4">{{cartItem.equipmentName}}</div>
 
     <div class="d-flex flex-row my-1">
@@ -17,7 +17,7 @@
     </div>
 
     <div class="d-flex">
-        <button type="button" class="close" aria-label="Close" (click)="onDelete(cartItem)">
+        <button type="button" class="close" aria-label="Close" (click)="onDelete()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>

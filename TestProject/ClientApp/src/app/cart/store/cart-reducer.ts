@@ -1,6 +1,5 @@
 import { SpaEquipment } from '../../equipment/spa-equipment.model';
 import { CartActionTypes, CartActions } from './cart.actions';
-import { stat } from 'fs';
 
 export interface CartState {
     items: SpaEquipment[];
@@ -13,13 +12,23 @@ const initialCartState: CartState = {
 export function cartReducer(state = initialCartState, action: CartActions): CartState {
     switch (action.type) {
         case CartActionTypes.AddItemActionType:
-            return {
-                ...state,
-                items: [...state.items, action.payload]
-            };
+            const isItemWasAdded = state.items.find(i => i.id === action.payload.id);
+            if (isItemWasAdded) {
+                action.payload.quantity++;
+                return {
+                    ...state,
+                    items: [...state.items]
+                };
+            } else {
+                return {
+                    ...state,
+                    items: [...state.items, action.payload]
+                };
+            }
         case CartActionTypes.DeleteItemActionType:
+            const index = state.items.findIndex(i => i.id === action.payload);
+            state.items.splice(index, 1);
             const cartItems = [...state.items];
-            cartItems.slice(action.payload, 1);
             return {
                 ...state,
                 items: cartItems
