@@ -28,13 +28,6 @@ export class EquipmentComponent implements OnInit {
   }
 
   onAddToCart(item: SpaEquipment) {
-    // logit to add the same item< quantity ++
-    this.store.select('cartItems')
-      .subscribe((cartItems) => {
-        cartItems.items.find(x => x.id === item.id);
-        // this.cartItemsCount = cartItems.items.length;
-        // this.cartList = cartItems.items;
-      });
     this.store.dispatch(new AddItemAction(item));
     this.equipmentService.itemAdded.next(item.equipmentName);
   }
