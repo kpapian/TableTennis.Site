@@ -1,16 +1,17 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
 import { Observable, Subscription } from 'rxjs';
 import { CartState } from './store/cart-reducer';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
     cartItemsState: Observable<{ items: SpaEquipment[] }>;
     cartStateSubscription!: Subscription;
@@ -27,10 +28,10 @@ export class CartComponent implements OnInit {
         this.cartItemsState = this.store.select('cartItems');
         this.cartStateSubscription = this.cartItemsState
             .subscribe((cartItems) => {
-            this.cartItemsCount = cartItems.items.length;
-            this.cartList = cartItems.items;
-            console.log(cartItems);
-        });
+                this.cartItemsCount = cartItems.items.length;
+                this.cartList = cartItems.items;
+                console.log(cartItems);
+            });
     }
 
     onItemTotalChange(): void {
@@ -54,12 +55,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/checkout']);
     }
 
-    // getCartItemsCount(): number {
-    //     this.cartItemsState
-    //         .subscribe((cartItems) => {
-    //         this.cartItemsCount = cartItems.items.length;
-    //     });
-
-    //     return this.cartItemsCount;
-    // } // doesn t work
+    ngOnDestroy() {
+        this.cartStateSubscription.unsubscribe();
+    }
 }

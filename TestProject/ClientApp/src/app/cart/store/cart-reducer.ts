@@ -12,9 +12,10 @@ const initialCartState: CartState = {
 export function cartReducer(state = initialCartState, action: CartActions): CartState {
     switch (action.type) {
         case CartActionTypes.AddItemActionType:
-            const isItemWasAdded = state.items.find(i => i.id === action.payload.id);
+            const isItemWasAdded = state.items.find(i => i.id === action.payload.id) ? true : false;
             if (isItemWasAdded) {
-                action.payload.quantity++;
+                const item = state.items.find(i => i.id === action.payload.id);
+                item.quantity++;
                 return {
                     ...state,
                     items: [...state.items]
