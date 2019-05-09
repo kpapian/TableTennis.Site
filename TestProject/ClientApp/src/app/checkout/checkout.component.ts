@@ -5,7 +5,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { CustomValidators } from '../utils/custom-validators';
 import { CheckoutService } from './checkout.service';
 import { SpaOrder } from './spa-order.model';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { CartState } from '../cart/store/cart-reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +20,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   countries = ['USA', 'Canada', 'Ukraine', 'France', 'German'];
   shipping = 100;
   taxes = 10;
+  orderTotal: number;
+  cartTotal: number;
 
   hasUnsavedChanges = false;
   isOrderPlaced = false;
@@ -25,17 +29,30 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   checkoutForm: FormGroup;
   changeCheckoutForm: FormGroup;
   changeCheckoutFormValuesChangesSubscription!: Subscription;
+  orderTotalSubscription!: Subscription;
   orderData: SpaOrder;
   orderNumber = 'UNKNWON';
+  orderDetailsSubscription!: Subscription;
 
   constructor(private readonly route: Router, private readonly formBuilder: FormBuilder,
-              private readonly checkoutService: CheckoutService) { }
+              private readonly checkoutService: CheckoutService,
+              private readonly store: Store<CartState>) { }
 
   ngOnInit() {
     this.buildForm();
 
+    this.orderDetailsSubscription = this.store.select('cartItems')
+      .subscribe((cartItems) => {
+        this.filledOrder = new SpaOrder();
+        this.filledOrder.orderDetails = cartItems.items;
+      });
+
     this.changeCheckoutFormValuesChangesSubscription = this.checkoutForm.valueChanges
       .subscribe(() => this.hasUnsavedChanges = true);
+
+    this.orderTotalSubscription = this.store.select('cartItems')
+      .subscribe(cartState => this.orderTotal = cartState.cartTotal + this.shipping + this.taxes);
+
   }
 
   canDeactivate(): boolean {
@@ -77,7 +94,13 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
         });
   }
 
+  calculateOrderTotal(): number {
+    return this.orderTotal = this.shipping + this.taxes + this.cartTotal;
+  }
+
   ngOnDestroy() {
     this.changeCheckoutFormValuesChangesSubscription.unsubscribe();
+    this.orderTotalSubscription.unsubscribe();
+    this.orderDetailsSubscription.unsubscribe();
   }
 }

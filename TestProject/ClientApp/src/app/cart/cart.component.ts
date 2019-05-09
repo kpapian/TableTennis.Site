@@ -2,9 +2,9 @@ import { OnInit, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
-import { Observable, Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 import { CartState } from './store/cart-reducer';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CalculateCartTotalAction } from './store/cart.actions';
 
 @Component({
     selector: 'app-cart',
@@ -13,7 +13,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-    cartItemsState: Observable<{ items: SpaEquipment[] }>;
     cartStateSubscription!: Subscription;
     cartTotal = 0;
     isCheckoutBtnEnable: boolean;
@@ -25,10 +24,10 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.cartItemsState = this.store.select('cartItems');
-        this.cartStateSubscription = this.cartItemsState
+        this.cartStateSubscription = this.store.select('cartItems')
             .subscribe((cartItems) => {
                 this.cartItemsCount = cartItems.items.length;
+                this.cartTotal = cartItems.cartTotal;
                 this.cartList = cartItems.items;
                 console.log(cartItems);
             });
@@ -39,6 +38,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartList.forEach((item) => {
             this.cartTotal = this.cartTotal + item.price * item.quantity;
         });
+        this.store.dispatch(new CalculateCartTotalAction(this.cartTotal));
     }
 
     onItemDeleted(itemTotal: number): void {

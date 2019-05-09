@@ -1,3 +1,4 @@
+import { SpaEquipment } from '../equipment/spa-equipment.model';
 export class SpaOrder {
 
     firstName: string;
@@ -9,6 +10,7 @@ export class SpaOrder {
     cardNumber: string;
     expirationDate: string;
     cvv: string;
+    orderDetails: SpaEquipment[];
 
 
     constructor() {
@@ -21,5 +23,6 @@ export class SpaOrder {
         this.cardNumber = '';
         this.expirationDate = '';
         this.cvv = '';
+        this.orderDetails = [];
     }
 }

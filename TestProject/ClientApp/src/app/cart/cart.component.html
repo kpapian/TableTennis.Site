@@ -3,7 +3,7 @@
         <div class="container mb-auto mt-5" *ngIf="!(cartItemsCount === 0)">
             <h1>Shopping Cart</h1>
             <hr>
-            <app-cart-item *ngFor="let item of (cartItemsState | async).items let i = index"
+            <app-cart-item *ngFor="let item of (cartItemsState | async).items"
             [cartItem]="item"
             (itemTotalChanged)="onItemTotalChange($event)" (itemDeleted)="onItemDeleted($event)">
             </app-cart-item>

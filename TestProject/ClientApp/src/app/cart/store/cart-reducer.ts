@@ -1,12 +1,14 @@
 import { SpaEquipment } from '../../equipment/spa-equipment.model';
-import { CartActionTypes, CartActions } from './cart.actions';
+import { CartActionTypes, CartActions, CalculateCartTotalAction } from './cart.actions';
 
 export interface CartState {
     items: SpaEquipment[];
+    cartTotal: number;
 }
 
 const initialCartState: CartState = {
-    items: []
+    items: [],
+    cartTotal: 0
 };
 
 export function cartReducer(state = initialCartState, action: CartActions): CartState {
@@ -33,6 +35,12 @@ export function cartReducer(state = initialCartState, action: CartActions): Cart
             return {
                 ...state,
                 items: cartItems
+            };
+        case CartActionTypes.CalculateCartTotalActionType:
+            return {
+                ...state,
+                items: [...state.items],
+                cartTotal: action.payload
             };
         default:
             return state;
