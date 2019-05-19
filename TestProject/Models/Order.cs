@@ -16,5 +16,7 @@ namespace TestProject.Models
         public string CardNumber { get; set; }        
         public string ExpirationDate { get; set; }
         public string CVV { get; set; }
+        public decimal OrderTotal { get; set; }
+        public Equipment[] CartDetails { get; set; }
     }
 }

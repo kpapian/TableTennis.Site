@@ -2,7 +2,7 @@ import { OnInit, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
-import {Subscription} from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import { CartState } from './store/cart-reducer';
 import { CalculateCartTotalAction } from './store/cart.actions';
 
@@ -13,6 +13,7 @@ import { CalculateCartTotalAction } from './store/cart.actions';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
+    cartItemsState: Observable<{ items: SpaEquipment[], cartTotal: number }>;
     cartStateSubscription!: Subscription;
     cartTotal = 0;
     isCheckoutBtnEnable: boolean;
@@ -24,6 +25,7 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.cartItemsState = this.store.select('cartItems');
         this.cartStateSubscription = this.store.select('cartItems')
             .subscribe((cartItems) => {
                 this.cartItemsCount = cartItems.items.length;

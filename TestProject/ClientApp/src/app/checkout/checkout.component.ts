@@ -8,6 +8,7 @@ import { SpaOrder } from './spa-order.model';
 import { Subscription, Observable } from 'rxjs';
 import { CartState } from '../cart/store/cart-reducer';
 import { Store } from '@ngrx/store';
+import { SpaEquipment } from '../equipment/spa-equipment.model';
 
 @Component({
   selector: 'app-checkout',
@@ -22,6 +23,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   taxes = 10;
   orderTotal: number;
   cartTotal: number;
+  cartItems: SpaEquipment[];
 
   hasUnsavedChanges = false;
   isOrderPlaced = false;
@@ -44,14 +46,17 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
     this.orderDetailsSubscription = this.store.select('cartItems')
       .subscribe((cartItems) => {
         this.filledOrder = new SpaOrder();
-        this.filledOrder.orderDetails = cartItems.items;
+        this.cartItems = cartItems.items;
+        console.log(cartItems.items);
       });
 
     this.changeCheckoutFormValuesChangesSubscription = this.checkoutForm.valueChanges
       .subscribe(() => this.hasUnsavedChanges = true);
 
     this.orderTotalSubscription = this.store.select('cartItems')
-      .subscribe(cartState => this.orderTotal = cartState.cartTotal + this.shipping + this.taxes);
+      .subscribe(cartState => {
+        this.orderTotal = cartState.cartTotal + this.shipping + this.taxes;
+      });
 
   }
 
@@ -63,6 +68,11 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   get form(): any {
     return this.checkoutForm.value;
   }
+
+  get item(): any {
+    return this.filledOrder.orderDetails;
+  }
+
 
   private buildForm() {
     this.checkoutForm = this.formBuilder.group({
@@ -81,6 +91,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
 
   onPlaceOrder() {
     this.filledOrder = this.checkoutForm.value;
+    this.filledOrder.orderTotal = this.orderTotal;
+    this.filledOrder.orderDetails = this.cartItems;
     this.checkoutService.createOrder(this.filledOrder)
       .subscribe(
         (customerOrderNumber: string) => {
@@ -94,9 +106,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
         });
   }
 
-  calculateOrderTotal(): number {
-    return this.orderTotal = this.shipping + this.taxes + this.cartTotal;
-  }
+  // calculateOrderTotal(): number {
+  //   return this.orderTotal = this.shipping + this.taxes + this.cartTotal;
+  // }
 
   ngOnDestroy() {
     this.changeCheckoutFormValuesChangesSubscription.unsubscribe();

@@ -29,5 +29,10 @@ namespace TestProject.Models
         /// Gets or sets the ImageReference of equipment model
         /// </summary>
         public String ImageReference { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ImageReference of equipment model
+        /// </summary>
+        public Int32 Quantity { get; set; }
     }
 }

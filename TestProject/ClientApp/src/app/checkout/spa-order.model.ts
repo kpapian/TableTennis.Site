@@ -10,6 +10,7 @@ export class SpaOrder {
     cardNumber: string;
     expirationDate: string;
     cvv: string;
+    orderTotal: number;
     orderDetails: SpaEquipment[];
 
 
@@ -23,6 +24,7 @@ export class SpaOrder {
         this.cardNumber = '';
         this.expirationDate = '';
         this.cvv = '';
+        this.orderTotal = 0;
         this.orderDetails = [];
     }
 }

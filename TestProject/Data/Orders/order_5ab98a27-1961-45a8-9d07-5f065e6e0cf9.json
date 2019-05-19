@@ -1,0 +1,12 @@
+{
+  "FirstName": "e",
+  "LastName": "e",
+  "Address": "e",
+  "Country": "USA",
+  "Zip": "e",
+  "PaymentType": "Debit card",
+  "CardNumber": "e",
+  "ExpirationDate": "e",
+  "CVV": "e",
+  "OrderTotal": 140.0,
+  "CartDetails":null}
