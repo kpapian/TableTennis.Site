@@ -25,6 +25,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './cart/store/cart-reducer';
+import { CheckoutGuard } from './utils/checkout-guard.service';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +35,8 @@ const appRouts: Routes = [
   { path: 'contacts', component: ContactsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'order', component: OrderComponent },
-  { path: 'checkout', component: CheckoutComponent, canDeactivate: [CanDeactivateGuardService], },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [CheckoutGuard],
+  canDeactivate: [CanDeactivateGuardService], },
   { path: 'checkout/order/:orderNumber', component: OrderSuccessComponent },
   { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
@@ -72,7 +74,7 @@ const appRouts: Routes = [
   entryComponents: [MessageBoxYesNoComponent], /// why do we need to add this here?
   /// in case of dynamically loaded component and in order for a ComponentFactory to be generated,
   // the component must also be added to the module’s entryComponent
-  providers: [CanDeactivateGuardService],
+  providers: [CanDeactivateGuardService, CheckoutGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
