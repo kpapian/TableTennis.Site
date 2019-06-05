@@ -25,6 +25,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './cart/store/cart-reducer';
+import { LoginComponent } from './auth/login/login.component';
 import { CheckoutGuard } from './utils/checkout-guard.service';
 
 const appRouts: Routes = [
@@ -37,6 +38,7 @@ const appRouts: Routes = [
   { path: 'order', component: OrderComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [CheckoutGuard],
   canDeactivate: [CanDeactivateGuardService], },
+  { path: 'login', component: LoginComponent },
   { path: 'checkout/order/:orderNumber', component: OrderSuccessComponent },
   { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
@@ -59,7 +61,8 @@ const appRouts: Routes = [
     CheckoutComponent,
     MessageBoxYesNoComponent,
     ErrorPageComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
