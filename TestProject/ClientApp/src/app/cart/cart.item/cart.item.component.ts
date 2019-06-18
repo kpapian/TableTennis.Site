@@ -1,7 +1,7 @@
 import { OnInit, Component, EventEmitter, Output, Input } from '@angular/core';
 import { SpaEquipment } from '../../equipment/spa-equipment.model';
 import { Store } from '@ngrx/store';
-import { CartState } from '../store/cart-reducer';
+import { CartState } from '../store/cart.reducer';
 import { DeleteItemAction } from '../store/cart.actions';
 
 @Component({

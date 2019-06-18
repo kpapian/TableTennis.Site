@@ -1,10 +1,11 @@
 import { OnInit, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
 import { Observable, Subscription, Subject } from 'rxjs';
-import { CartState } from './store/cart-reducer';
 import { CalculateCartTotalAction } from './store/cart.actions';
+import { AppState } from '../reducers/index';
+import { curtItemsSelector, curtTotalSelector } from './store/cart.selectors';
 
 @Component({
     selector: 'app-cart',
@@ -13,7 +14,7 @@ import { CalculateCartTotalAction } from './store/cart.actions';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-    cartItemsState: Observable<{ items: SpaEquipment[], cartTotal: number }>;
+    // cartItemsState: Observable<SpaEquipment[]>;
     cartStateSubscription!: Subscription;
     cartTotal = 0;
     isCheckoutBtnEnable: boolean;
@@ -21,17 +22,23 @@ export class CartComponent implements OnInit, OnDestroy {
     cartList: SpaEquipment[];
 
     constructor(private router: Router,
-                private store: Store<CartState>) {
+        private store: Store<AppState>) {
     }
 
     ngOnInit() {
-        this.cartItemsState = this.store.select('cartItems');
-        this.cartStateSubscription = this.store.select('cartItems')
-            .subscribe((cartItems) => {
-                this.cartItemsCount = cartItems.items.length;
-                this.cartTotal = cartItems.cartTotal;
-                this.cartList = cartItems.items;
+        // this.cartItemsState = this.store.select(curtItemsSelector);
+
+        this.cartStateSubscription = this.store.pipe(
+            select(curtItemsSelector))
+            .subscribe(cartItems => {
+                this.cartItemsCount = cartItems.length;
+                this.cartList = cartItems;
                 console.log(cartItems);
+            });
+
+        this.store.pipe(select(curtTotalSelector))
+            .subscribe((total) => {
+                this.cartTotal = total;
             });
     }
 
@@ -46,12 +53,6 @@ export class CartComponent implements OnInit, OnDestroy {
     onItemDeleted(itemTotal: number): void {
         this.cartTotal = this.cartTotal - itemTotal;
     }
-
-    // get total(): number {
-    //     return this.cartList.reduce((prevTotal, currentValue) => {
-    //         return prevTotal + currentValue.price * currentValue.quantity;
-    //     }, 0);
-    // }
 
     onProceedToCheckout() {
         this.router.navigate(['/checkout']);

@@ -3,7 +3,7 @@ import { SpaEquipment } from './spa-equipment.model';
 import { EquipmentService } from './equipment.service';
 import { Store } from '@ngrx/store';
 import { AddItemAction } from '../cart/store/cart.actions';
-import { CartState } from '../cart/store/cart-reducer';
+import { CartState } from '../cart/store/cart.reducer';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -33,7 +33,7 @@ export class EquipmentComponent implements OnInit, OnDestroy {
     this.store.dispatch(new AddItemAction(item));
     this.equipmentService.itemAdded.next(item.equipmentName);
   }
-  
+
   ngOnDestroy()  {
     this.itemAddedSubscription.unsubscribe();
   }

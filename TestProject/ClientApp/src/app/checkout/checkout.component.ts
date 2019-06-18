@@ -6,9 +6,11 @@ import { CustomValidators } from '../utils/custom-validators';
 import { CheckoutService } from './checkout.service';
 import { SpaOrder } from './spa-order.model';
 import { Subscription, Observable } from 'rxjs';
-import { CartState } from '../cart/store/cart-reducer';
+import { CartState } from '../cart/store/cart.reducer';
 import { Store } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
+import { curtItemsSelector, curtTotalSelector } from '../cart/store/cart.selectors';
+import { AppState } from '../reducers/index';
 
 @Component({
   selector: 'app-checkout',
@@ -37,27 +39,31 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   orderDetailsSubscription!: Subscription;
 
   constructor(private readonly route: Router, private readonly formBuilder: FormBuilder,
-              private readonly checkoutService: CheckoutService,
-              private readonly store: Store<CartState>) { }
+    private readonly checkoutService: CheckoutService,
+    private readonly store: Store<AppState>) { }
 
   ngOnInit() {
     this.buildForm();
 
-    this.orderDetailsSubscription = this.store.select('cartItems')
+    this.orderDetailsSubscription = this.store.select(curtItemsSelector)
       .subscribe((cartItems) => {
         this.filledOrder = new SpaOrder();
-        this.cartItems = cartItems.items;
-        console.log(cartItems.items);
+        this.cartItems = cartItems;
+        console.log(cartItems);
       });
 
     this.changeCheckoutFormValuesChangesSubscription = this.checkoutForm.valueChanges
       .subscribe(() => this.hasUnsavedChanges = true);
 
-    this.orderTotalSubscription = this.store.select('cartItems')
-      .subscribe(cartState => {
-        this.orderTotal = cartState.cartTotal + this.shipping + this.taxes;
+    this.store.select(curtTotalSelector)
+      .subscribe((total) => {
+        this.orderTotal = total + this.shipping + this.taxes;
       });
 
+    // this.orderTotalSubscription = this.store.select(curtItemsSelector)
+    //   .subscribe(cartState => {
+        
+    //   });
   }
 
   canDeactivate(): boolean {

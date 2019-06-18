@@ -1,14 +1,16 @@
 import { SpaEquipment } from '../../equipment/spa-equipment.model';
-import { CartActionTypes, CartActions, CalculateCartTotalAction } from './cart.actions';
+import { CartActionTypes, CartActions } from './cart.actions';
 
 export interface CartState {
     items: SpaEquipment[];
     cartTotal: number;
+    itemQuantity: number;
 }
 
 const initialCartState: CartState = {
     items: [],
-    cartTotal: 0
+    cartTotal: 0,
+    itemQuantity: 0
 };
 
 export function cartReducer(state = initialCartState, action: CartActions): CartState {

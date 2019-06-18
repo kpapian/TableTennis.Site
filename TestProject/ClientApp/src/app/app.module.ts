@@ -24,9 +24,10 @@ import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-n
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 import { StoreModule } from '@ngrx/store';
-import { cartReducer } from './cart/store/cart-reducer';
+import { cartReducer } from './cart/store/cart.reducer';
 import { LoginComponent } from './auth/login/login.component';
 import { CheckoutGuard } from './utils/checkout-guard.service';
+import { reducers, metaReducers } from './reducers/index';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
@@ -72,7 +73,8 @@ const appRouts: Routes = [
     RouterModule.forRoot(appRouts),
     HttpClientModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({cartItems: cartReducer})
+    // StoreModule.forRoot({cartItems: cartReducer})
+    StoreModule.forRoot(reducers),
   ],
   entryComponents: [MessageBoxYesNoComponent], /// why do we need to add this here?
   /// in case of dynamically loaded component and in order for a ComponentFactory to be generated,
