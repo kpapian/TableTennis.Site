@@ -13,8 +13,6 @@ import { curtItemsSelector, curtTotalSelector } from './store/cart.selectors';
     styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, OnDestroy {
-
-    // cartItemsState: Observable<SpaEquipment[]>;
     cartStateSubscription!: Subscription;
     cartTotal = 0;
     isCheckoutBtnEnable: boolean;
@@ -26,8 +24,6 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // this.cartItemsState = this.store.select(curtItemsSelector);
-
         this.cartStateSubscription = this.store.pipe(
             select(curtItemsSelector))
             .subscribe(cartItems => {

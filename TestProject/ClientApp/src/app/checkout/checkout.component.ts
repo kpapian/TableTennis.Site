@@ -6,7 +6,6 @@ import { CustomValidators } from '../utils/custom-validators';
 import { CheckoutService } from './checkout.service';
 import { SpaOrder } from './spa-order.model';
 import { Subscription, Observable } from 'rxjs';
-import { CartState } from '../cart/store/cart.reducer';
 import { Store } from '@ngrx/store';
 import { SpaEquipment } from '../equipment/spa-equipment.model';
 import { curtItemsSelector, curtTotalSelector } from '../cart/store/cart.selectors';
@@ -33,7 +32,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
   checkoutForm: FormGroup;
   changeCheckoutForm: FormGroup;
   changeCheckoutFormValuesChangesSubscription!: Subscription;
-  orderTotalSubscription!: Subscription;
   orderData: SpaOrder;
   orderNumber = 'UNKNWON';
   orderDetailsSubscription!: Subscription;
@@ -59,11 +57,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
       .subscribe((total) => {
         this.orderTotal = total + this.shipping + this.taxes;
       });
-
-    // this.orderTotalSubscription = this.store.select(curtItemsSelector)
-    //   .subscribe(cartState => {
-        
-    //   });
   }
 
   canDeactivate(): boolean {
@@ -112,13 +105,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, CanComponentDeactiv
         });
   }
 
-  // calculateOrderTotal(): number {
-  //   return this.orderTotal = this.shipping + this.taxes + this.cartTotal;
-  // }
-
   ngOnDestroy() {
     this.changeCheckoutFormValuesChangesSubscription.unsubscribe();
-    this.orderTotalSubscription.unsubscribe();
     this.orderDetailsSubscription.unsubscribe();
   }
 }
