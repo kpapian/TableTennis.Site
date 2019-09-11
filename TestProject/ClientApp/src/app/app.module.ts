@@ -24,10 +24,9 @@ import { MessageBoxYesNoComponent } from './message-box-yes-no/message-box-yes-n
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 import { StoreModule } from '@ngrx/store';
-import { cartReducer } from './cart/store/cart.reducer';
 import { LoginComponent } from './auth/login/login.component';
 import { CheckoutGuard } from './utils/checkout-guard.service';
-import { reducers, metaReducers } from './reducers/index';
+import { reducers } from './reducers/index';
 
 const appRouts: Routes = [
   { path: '', component: HomeComponent },
